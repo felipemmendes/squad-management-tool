@@ -1,9 +1,9 @@
+import { useSelector } from 'react-redux';
 import { FaPlus } from 'react-icons/fa';
 
 import * as S from './styles';
 
 import Layout from '../_PageLayout';
-import Button from '../../components/Button';
 import Card from '../../components/Card';
 import CardField from '../../components/CardField';
 import Ranking from '../../components/Ranking';
@@ -25,31 +25,13 @@ const rankingLowestData = [
   { id: 9, name: 'FC Nantes', average: 22.1 },
   { id: 10, name: 'CSKA Moscow', average: 22.5 },
 ];
-const myTeams = [
-  {
-    id: 1,
-    name: 'Barcelona',
-    description: 'Adjisadjaoidjsa',
-  },
-  {
-    id: 2,
-    name: 'São Paulo',
-    description: 'UEHEUR',
-  },
-  {
-    id: 3,
-    name: 'Santos',
-    description: 'piitrofewa',
-  },
-];
 
 const Dashboard = () => {
+  const { myTeams } = useSelector((state) => state.teams);
+
   return (
     <Layout>
-      <Card
-        title="My teams"
-        button={<Button icon={FaPlus} to="/create-team" />}
-      >
+      <Card title="My teams" hasButton to="/create-team" icon={<FaPlus />}>
         <Table columns={myTeamTableColumns} data={myTeams} />
       </Card>
       <S.Aside>

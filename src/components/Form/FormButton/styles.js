@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Container as Button } from '../../Button/styles';
+import { Container as Button } from '../../Card/Button/styles';
 
 export const Container = styled(Button)`
   color: ${({ theme }) => theme.colors.textHighContrast};

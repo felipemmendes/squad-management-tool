@@ -1,11 +1,12 @@
+import Button from './Button';
 import * as S from './styles';
 
-const Card = ({ title, button, children }) => {
+const Card = ({ title, to, hasButton, icon, children }) => {
   return (
     <S.Container>
       <S.Title>
         <h1>{title}</h1>
-        {button}
+        {hasButton && <Button to={to} icon={icon} />}
       </S.Title>
       <S.Content>{children}</S.Content>
     </S.Container>

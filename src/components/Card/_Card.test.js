@@ -1,4 +1,4 @@
-import { render, getByRole, getByText } from '../../setupTests';
+import { render, getByRole, getByText, getByTestId } from '../../setupTests';
 import Card from './';
 
 describe('card component', () => {
@@ -17,13 +17,18 @@ describe('card component', () => {
 
   it('should render a card with a button', () => {
     const { container } = render(
-      <Card title="test-card" button={<button>test-button</button>}>
+      <Card
+        title="test-card"
+        hasButton
+        to="/"
+        icon={<svg data-testid="test-svg" />}
+      >
         <div>test-text</div>
       </Card>
     );
 
     expect(getByRole(container, 'heading')).toHaveTextContent('test-card');
     expect(getByText(container, 'test-text')).toBeVisible();
-    expect(getByRole(container, 'button')).toHaveTextContent('test-button');
+    expect(getByTestId(container, 'test-svg')).toBeVisible();
   });
 });

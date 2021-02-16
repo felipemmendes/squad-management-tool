@@ -4,8 +4,11 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
-import React from 'react';
 import { render } from '@testing-library/react';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store/store';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from './styles/themes';
 import { Router } from 'react-router-dom';
@@ -13,9 +16,13 @@ import history from './routes/history';
 
 const AllTheProviders = ({ children }) => {
   return (
-    <Router history={history}>
-      <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
-    </Router>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router history={history}>
+          <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
+        </Router>
+      </PersistGate>
+    </Provider>
   );
 };
 

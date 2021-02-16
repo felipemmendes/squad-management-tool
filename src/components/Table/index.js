@@ -1,13 +1,16 @@
 import { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useTable, useSortBy } from 'react-table';
 import { FaPen, FaShareAlt, FaSort, FaTrash } from 'react-icons/fa';
 
+import { removeTeam } from '../../store/index';
 import { navigateToTeam } from '../../utils/navigateToTeam';
 
 import * as S from './styles';
 import ButtonIcon from './ButtonIcon';
 
 const Table = ({ columns, data }) => {
+  const dispatch = useDispatch();
   const [rowHover, setRowHover] = useState(null);
 
   const {
@@ -18,9 +21,12 @@ const Table = ({ columns, data }) => {
     prepareRow,
   } = useTable({ columns, data }, useSortBy);
 
-  const handleRemoveTeam = useCallback((id) => {
-    console.log('remove team: ', id);
-  }, []);
+  const handleRemoveTeam = useCallback(
+    (id) => {
+      dispatch(removeTeam(id));
+    },
+    [dispatch]
+  );
 
   return (
     <S.Container {...getTableProps()}>
@@ -53,8 +59,8 @@ const Table = ({ columns, data }) => {
             >
               {row.cells.map((cell, idx) => (
                 <S.TableRowCell {...cell.getCellProps()}>
-                  <div>
-                    {cell.render('Cell')}
+                  <S.CellContent>
+                    <p>{cell.render('Cell')}</p>
                     {row.id === rowHover && idx === 1 && (
                       <S.Options>
                         <ButtonIcon
@@ -74,7 +80,7 @@ const Table = ({ columns, data }) => {
                         />
                       </S.Options>
                     )}
-                  </div>
+                  </S.CellContent>
                 </S.TableRowCell>
               ))}
             </S.TableRow>

@@ -1,7 +1,7 @@
 const myTeamTableColumns = [
   {
     Header: 'Name',
-    accessor: 'name',
+    accessor: 'teamName',
   },
   {
     Header: 'Description',

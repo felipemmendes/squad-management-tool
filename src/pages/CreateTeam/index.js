@@ -1,61 +1,68 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+
+import useTeamTags from '../../hooks/useTeamTags';
+import useFormValues from '../../hooks/useFormValues';
+import { addTeam } from '../../store';
+import history from '../../routes/history';
 
 import Layout from '../_PageLayout';
 import Card from '../../components/Card';
 import { Form, Field, FormButton } from '../../components/Form';
 import Search from '../../components/Search';
 
-import createTeamSchema from '../../constants/createTeamSchema';
-import fieldFormationOptions from '../../constants/fieldFormationOptions';
-import teamTypeOptions from '../../constants/teamTypeOptions';
+import {
+  teamSchema,
+  fieldFormationOptions,
+  formInitialValues,
+  teamTypeOptions,
+} from '../../constants';
+import { validateFormValues } from '../../utils/validateFormValues';
 
-const initialValues = {
-  teamName: '',
-  description: '',
-  website: '',
-  type: '',
-  tagsInput: '',
-  tags: [],
-  formation: '3 - 2 - 2 - 3',
-};
+const CreateTeam = () => {
+  const dispatch = useDispatch();
+  const { tags, handleAddTag, handleDeleteTag } = useTeamTags([]);
+  const {
+    fieldValues,
+    setFieldValues,
+    resetFieldValue,
+    fieldErrors,
+    setFieldErrors,
+  } = useFormValues(formInitialValues);
 
-const Team = () => {
-  const { id } = useParams();
-  const [team, setTeam] = useState();
-  const [tagsArr, setTagsArr] = useState([]);
+  const handleSubmit = useCallback(
+    async (event) => {
+      event.preventDefault();
+      try {
+        await validateFormValues({ schema: teamSchema, values: fieldValues });
 
-  useEffect(() => {
-    if (!id) {
-      setTeam('Create your team');
-    } else {
-      setTeam('Time 1');
-    }
-  }, [id]);
+        const submitValues = { ...fieldValues };
+        delete submitValues.tagsInput;
 
-  const handleDeleteTag = useCallback((tag) => {
-    if (!tag) {
-      setTagsArr((oldState) => {
-        const newTags = [...oldState];
-        newTags.pop();
-        return newTags;
-      });
-    } else {
-      setTagsArr((oldState) => {
-        const newTags = oldState.filter((t) => t !== tag);
-        return newTags;
-      });
-    }
-  }, []);
+        dispatch(addTeam(fieldValues));
 
-  const handleAddTag = useCallback((newTag) => {
-    setTagsArr((oldState) => [...oldState, newTag]);
-  }, []);
+        history.push('/');
+      } catch (error) {
+        if (error.name === 'CustomValidationError') {
+          setFieldErrors(error.validationError);
+        } else {
+          console.log(error);
+        }
+      }
+    },
+    [dispatch, fieldValues, setFieldErrors]
+  );
 
   return (
     <Layout>
-      <Card title={team}>
-        <Form initialValues={initialValues} schema={createTeamSchema}>
+      <Card title="Create your team">
+        <Form
+          fieldValues={fieldValues}
+          setFieldValues={setFieldValues}
+          resetFieldValue={resetFieldValue}
+          errors={fieldErrors}
+          handleSubmit={handleSubmit}
+        >
           <Field component="section" sectionTitle="Team Information">
             <Field component="group">
               <Field
@@ -91,7 +98,7 @@ const Team = () => {
                 component="tags"
                 id="tags"
                 name="tagsInput"
-                tagsArr={tagsArr}
+                tagsArr={tags}
                 addTag={handleAddTag}
                 deleteTag={handleDeleteTag}
                 label="Tags"
@@ -125,4 +132,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default CreateTeam;

@@ -1,19 +1,39 @@
-import { render, fireEvent, getByTestId } from '@testing-library/react';
+import {
+  render,
+  fireEvent,
+  getByTestId,
+  findByTestId,
+  getByRole,
+} from '../setupTests';
 import useFormValues from './useFormValues';
 
 describe('useFormValues hook', () => {
   const TestComponent = ({ initialValues }) => {
-    const { fieldValues, setFieldValues, resetFieldValue } = useFormValues(
-      initialValues
-    );
+    const {
+      fieldValues,
+      setFieldValues,
+      resetFieldValue,
+      fieldErrors,
+      setFieldErrors,
+    } = useFormValues(initialValues);
     return (
-      <input
-        data-testid="email"
-        name="email"
-        value={fieldValues.email}
-        onChange={setFieldValues}
-        onBlur={() => resetFieldValue('email')}
-      />
+      <div>
+        <input
+          data-testid="email"
+          name="email"
+          value={fieldValues.email}
+          onChange={setFieldValues}
+        />
+        <button onClick={() => resetFieldValue('email')}>
+          test-reset-field
+        </button>
+        <button onClick={() => setFieldErrors({ email: 'error' })}>
+          test-error-field
+        </button>
+        {fieldErrors.email && (
+          <div data-testid="test-email-errors">{fieldErrors.email}</div>
+        )}
+      </div>
     );
   };
 
@@ -24,7 +44,7 @@ describe('useFormValues hook', () => {
 
     const { container } = render(<TestComponent initialValues={values} />);
 
-    expect(container.firstChild).toHaveValue('john@doe.com');
+    expect(getByRole(container, 'textbox')).toHaveValue('john@doe.com');
   });
 
   it('should change the value with onChange event', () => {
@@ -40,7 +60,7 @@ describe('useFormValues hook', () => {
       },
     });
 
-    expect(container.firstChild).toHaveValue('test');
+    expect(getByRole(container, 'textbox')).toHaveValue('test');
   });
 
   it('should reset the field value when resetFieldValue is called', () => {
@@ -50,8 +70,24 @@ describe('useFormValues hook', () => {
 
     const { container } = render(<TestComponent initialValues={values} />);
 
-    fireEvent.blur(getByTestId(container, 'email'));
+    fireEvent.click(
+      getByRole(container, 'button', { name: 'test-reset-field' })
+    );
 
-    expect(container.firstChild).toHaveValue('');
+    expect(getByRole(container, 'textbox')).toHaveValue('');
+  });
+
+  it('should set field errors when setFieldError is called', async () => {
+    const values = {
+      email: '',
+    };
+
+    const { container } = render(<TestComponent initialValues={values} />);
+
+    fireEvent.click(
+      getByRole(container, 'button', { name: 'test-error-field' })
+    );
+
+    expect(await findByTestId(container, 'test-email-errors')).toBeVisible();
   });
 });

@@ -65,14 +65,23 @@ export const TableRow = styled.tr`
 `;
 
 export const TableRowCell = styled.td`
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+`;
+
+export const CellContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    padding: 0.5rem 0;
+    width: 80%;
   }
 `;
 
 export const Options = styled.div`
+  width: 20%;
   display: flex;
   align-items: center;
+  margin-left: auto;
 `;

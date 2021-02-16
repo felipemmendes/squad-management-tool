@@ -1,13 +1,15 @@
 import { Switch, Route } from 'react-router-dom';
 
+import CreateTeam from '../pages/CreateTeam';
 import Dashboard from '../pages/Dashboard';
-import Team from '../pages/Team';
+import EditTeam from '../pages/EditTeam';
 
 const Routes = () => {
   return (
     <Switch>
       <Route path="/" exact component={Dashboard} />
-      <Route path={['/team/:id', '/create-team']} component={Team} />
+      <Route path={'/team/:id'} component={EditTeam} />
+      <Route path={'/create-team'} component={CreateTeam} />
     </Switch>
   );
 };

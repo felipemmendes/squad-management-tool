@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 const useFormValues = (initialValues) => {
   const [values, setValues] = useState(initialValues);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     const { name, value, changeType } = event.target;
@@ -38,6 +39,8 @@ const useFormValues = (initialValues) => {
     fieldValues: values,
     setFieldValues: handleChange,
     resetFieldValue,
+    fieldErrors: errors,
+    setFieldErrors: setErrors,
   };
 };
 

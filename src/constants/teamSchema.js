@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const createTeamSchema = yup.object().shape({
+const teamSchema = yup.object().shape({
   teamName: yup.string().required(),
   description: yup.string(),
   website: yup.string().url().required(),
@@ -8,4 +8,4 @@ const createTeamSchema = yup.object().shape({
   tags: yup.array(yup.string()),
 });
 
-export default createTeamSchema;
+export default teamSchema;
