@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Squad Management Tool
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the code for the Squad Management Tool, a tool that guides users toward creating and configuring soccer teams. It also shows statistics about the current teams.
 
-## Available Scripts
+<br />
 
-In the project directory, you can run:
+## Features and specifications
 
-### `yarn start`
+### Phase 1
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Implement Page Layout.
+2. Implement "My teams" section.
+3. Ability to Create/Edit and Remove a team.
+4. Ability to see what player was the most/less picked on.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br />
 
-### `yarn test`
+### Phase 2
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Ability to search for a player name and see the list of players who matched the criteria.
+2. Ability to add a player to a field position through drag n drop.
+3. Save must store the team's players into application state.
 
-### `yarn build`
+<br />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Phase 3
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Implement "Top 5" section to the dashboard.
+2. Ability to configure and display a given formation from the list (Soccer field must display the positions accordingly).
+3. Ability to see player information on hover (on soccer field)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br />
 
-### `yarn eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To develop the application you will need npm or yarn installed in your computer.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the repository
+   ```sh
+   git clone https://github.com/felipemmendes/squad-management-tool.git
+   ```
+2. Install NPM packages
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   ```sh
+   npm install
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   or
 
-## Learn More
+   ```sh
+   yarn
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Rename `.env.example` to `.env` and edit the variables with your own environment configuration (API url).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Start the development API for fetching data.
 
-### Code Splitting
+   This project uses `json-server` and already have an `.json` with data for fetching in during development.
+   To start the API, run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```sh
+   npx json-server db.json -p PORT
+   ```
 
-### Analyzing the Bundle Size
+   Change `PORT` with port number, e.g., 3333. This will start the server on http://localhost:3333.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+5. Start the React server in development mode:
 
-### Making a Progressive Web App
+   ```sh
+   npm run start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   or
 
-### Advanced Configuration
+   ```sh
+   yarn start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+6. Access the application on http://localhost:3000.
 
-### Deployment
+<br />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Testing
 
-### `yarn build` fails to minify
+To test the application run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```sh
+ npm run test
+```
+
+or
+
+```sh
+  yarn test
+```
+
+<br />
+
+## Deployment
+
+Before deployment, make sure the fetching data params on [src/store/players/slice.js](src/store/players/slice.js`) match those of the API you will be using in production.
+
+After this, you can deploy the application on any host service that supports a Node.js server. I suggest [Vercel](https://vercel.com/guides/deploying-react-with-vercel-cra) or [Netlify](https://docs.netlify.com/site-deploys/overview/)as they have free tiers for Personal use and are super easy to deploy and maintain. You can also use a VM, like the [Droplets from Digital Ocean](https://www.digitalocean.com/products/droplets/).
+
+When deploying, make sure to set the environment variables for your production server (instructions for [Vercel](https://vercel.com/docs/environment-variables) or [Netlify](https://docs.netlify.com/configure-builds/environment-variables/#declare-variables)).
+You will need to configure the redirects of your pages (instructions for [Vercel](https://vercel.com/docs/configuration?query=redirect#introduction/configuration-reference) or [Netlify](https://docs.netlify.com/routing/redirects/)).
