@@ -27,7 +27,7 @@ const rankingLowestData = [
 ];
 
 const Dashboard = () => {
-  const { myTeams } = useSelector((state) => state.teams);
+  const { myTeams, pickedPlayers } = useSelector((state) => state.teams);
 
   return (
     <Layout>
@@ -39,10 +39,7 @@ const Dashboard = () => {
           <Ranking data={rankingHighestData} caption="Highest avg age" />
           <Ranking data={rankingLowestData} caption="Lowest avg age" />
         </Card>
-        <CardField
-          mostPicked={{ initials: 'JD', picked: '75%' }}
-          leastPicked={{ initials: 'AR', picked: '25%' }}
-        />
+        <CardField pickedPlayers={pickedPlayers} />
       </S.Aside>
     </Layout>
   );

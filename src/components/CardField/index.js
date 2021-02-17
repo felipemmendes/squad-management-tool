@@ -1,20 +1,36 @@
+import { getNameInitials } from '../../utils/getNameInitials';
+import { sortPlayersByPicked } from '../../utils/sortPlayersByPicked';
 import * as S from './styles';
 
-const CardField = ({ mostPicked, leastPicked }) => {
+const CardField = ({ pickedPlayers }) => {
+  const { mostPicked, leastPicked } = sortPlayersByPicked(pickedPlayers);
+
   return (
     <S.Container>
       <S.Side>
         Most picked player
         <S.Player>
-          <S.Avatar>{mostPicked.initials}</S.Avatar>
-          <S.Picked>{mostPicked.picked}</S.Picked>
+          {mostPicked.length ? (
+            <>
+              <S.Avatar>{getNameInitials(mostPicked[0])}</S.Avatar>
+              <S.Picked>{mostPicked[2]}</S.Picked>
+            </>
+          ) : (
+            <S.Avatar isEmpty />
+          )}
         </S.Player>
       </S.Side>
       <S.Side>
         Least picked player
         <S.Player>
-          <S.Avatar>{leastPicked.initials}</S.Avatar>
-          <S.Picked>{leastPicked.picked}</S.Picked>
+          {mostPicked.length ? (
+            <>
+              <S.Avatar>{getNameInitials(leastPicked[0])}</S.Avatar>
+              <S.Picked>{leastPicked[2]}</S.Picked>
+            </>
+          ) : (
+            <S.Avatar isEmpty />
+          )}
         </S.Player>
       </S.Side>
     </S.Container>

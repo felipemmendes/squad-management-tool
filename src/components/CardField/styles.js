@@ -120,7 +120,8 @@ export const Avatar = styled.div`
   margin-top: 1rem;
   width: 4rem;
   height: 4rem;
-  background-color: ${({ theme }) => theme.colors.contentBg};
+  background-color: ${({ theme, isEmpty }) =>
+    isEmpty ? theme.colors.transparentFillPrimary : theme.colors.contentBg};
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.textPrimary};
 

@@ -31,7 +31,6 @@ const EditTeam = () => {
     if (!team) {
       history.push('/');
     } else {
-      // dispatch(setPlayers(team.playersFormation));
       setLoading(false);
     }
   }, [team, dispatch]);
