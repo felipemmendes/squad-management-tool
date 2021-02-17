@@ -9,6 +9,7 @@ const PlayerCard = ({ player, id, handleDrop, handleDragOver }) => {
       onDrop={(event) => handleDrop(event, id)}
       onDragOver={handleDragOver}
       hasPlayer={!!player}
+      player={player}
     >
       {player ? (
         <S.Player>{player.initials}</S.Player>

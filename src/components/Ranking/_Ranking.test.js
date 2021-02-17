@@ -12,8 +12,8 @@ describe('ranking component', () => {
       <Ranking
         caption="test-rank"
         data={[
-          { id: 1, name: 'test-team-1', average: 20 },
-          { id: 2, name: 'test-team-2', average: 15 },
+          { id: 1, teamName: 'test-team-1', ageAvg: '20' },
+          { id: 2, teamName: 'test-team-2', ageAvg: '15' },
         ]}
       />
     );

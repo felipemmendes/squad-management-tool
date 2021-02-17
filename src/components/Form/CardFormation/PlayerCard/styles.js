@@ -1,4 +1,16 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const tooltip = css`
+  content: '${(props) => props.player && props.player.name}';
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  background-color: ${({ theme }) => theme.colors.textPrimary};
+  padding: 0.3rem 0.8rem;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  color: ${({ theme }) => theme.colors.textHighContrast};
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -20,6 +32,10 @@ export const Container = styled.div`
     background: transparent;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='%23CCCCCCFF' stroke-width='1' stroke-dasharray='8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
     border-radius: 50%;
+  }
+
+  &:hover:after {
+    ${(props) => props.player && tooltip}
   }
 
   svg {

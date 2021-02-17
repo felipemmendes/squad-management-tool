@@ -1,9 +1,13 @@
+import { useMemo } from 'react';
 import { getNameInitials } from '../../utils/getNameInitials';
 import { sortPlayersByPicked } from '../../utils/sortPlayersByPicked';
 import * as S from './styles';
 
 const CardField = ({ pickedPlayers }) => {
-  const { mostPicked, leastPicked } = sortPlayersByPicked(pickedPlayers);
+  const { leastPicked, mostPicked } = useMemo(
+    () => sortPlayersByPicked(pickedPlayers),
+    [pickedPlayers]
+  );
 
   return (
     <S.Container>
@@ -23,7 +27,7 @@ const CardField = ({ pickedPlayers }) => {
       <S.Side>
         Least picked player
         <S.Player>
-          {mostPicked.length ? (
+          {leastPicked.length ? (
             <>
               <S.Avatar>{getNameInitials(leastPicked[0])}</S.Avatar>
               <S.Picked>{leastPicked[2]}</S.Picked>

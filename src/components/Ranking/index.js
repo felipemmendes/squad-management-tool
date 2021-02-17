@@ -7,12 +7,17 @@ const Ranking = ({ caption, data }) => {
     <S.Container>
       <h2>{caption}</h2>
       <S.List>
-        {data.map((d) => (
-          <S.ListItem key={d.id} onClick={() => navigateToTeam(d.id)}>
-            <p>{d.name}</p>
-            <strong>{d.average}</strong>
-          </S.ListItem>
-        ))}
+        {data.map((d, idx) => {
+          if (idx >= 5) {
+            return null;
+          }
+          return (
+            <S.ListItem key={d.id} onClick={() => navigateToTeam(d.id)}>
+              <p>{d.teamName}</p>
+              <strong>{d.ageAvg}</strong>
+            </S.ListItem>
+          );
+        })}
       </S.List>
     </S.Container>
   );
