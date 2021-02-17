@@ -4,7 +4,7 @@ import {
   getByText,
   getByRole,
   getAllByRole,
-} from '../../../setupTests';
+} from '../../../test-utils';
 import Tags from './';
 
 describe('tags component', () => {
@@ -133,7 +133,7 @@ describe('tags component', () => {
     );
 
     const input = getByRole(container, 'textbox', {
-      name: 'test-tags-label test-tag-1',
+      name: 'test-tags-label test-tag-1 delete tag',
     });
 
     fireEvent.keyDown(input, { key: 'Backspace', code: 'Backspace' });

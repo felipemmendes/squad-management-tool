@@ -1,9 +1,14 @@
 import { useMemo } from 'react';
-import { FaPlus } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
 
+import { selectPlayer } from '../../../store';
+
+import PlayerCard from './PlayerCard';
 import * as S from './styles';
 
-const CardFormation = ({ name, id, value, onChange, formation }) => {
+const CardFormation = ({ name, value, onChange, formation }) => {
+  const dispatch = useDispatch();
+
   const displayFormation = useMemo(() => {
     const displayFormation = formation.split(' - ');
     displayFormation.reverse();
@@ -11,19 +16,43 @@ const CardFormation = ({ name, id, value, onChange, formation }) => {
     return displayFormation;
   }, [formation]);
 
+  const handleDrop = (event, cardId) => {
+    event.preventDefault();
+    const data = JSON.parse(event.dataTransfer.getData('text/plain'));
+
+    dispatch(selectPlayer(data.id));
+
+    onChange({
+      target: {
+        name,
+        changeType: 'dataDrop',
+        position: cardId,
+        value: data,
+      },
+    });
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <S.Container>
       {displayFormation.map((line, lineIdx) => {
         const lineNumber = parseInt(line, 10);
-        const lineId = `line-${lineIdx}`;
+        const lineId = `${lineIdx}`;
         return (
           <S.Line id={lineId} key={lineId}>
-            {[...Array(lineNumber)].map((player, playerIdx) => {
-              const playerId = `player-${lineIdx}-${playerIdx}`;
+            {[...Array(lineNumber)].map((_, playerIdx) => {
+              const cardId = `${lineIdx}-${playerIdx}`;
               return (
-                <S.Avatar id={playerId} key={playerId}>
-                  <FaPlus />
-                </S.Avatar>
+                <PlayerCard
+                  key={cardId}
+                  id={cardId}
+                  player={value[cardId]}
+                  handleDrop={handleDrop}
+                  handleDragOver={handleDragOver}
+                />
               );
             })}
           </S.Line>

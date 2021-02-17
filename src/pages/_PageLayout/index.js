@@ -6,7 +6,6 @@ import logo from '../../assets/logo.svg';
 
 const user = {
   name: 'John Doe',
-  initials: 'JD',
 };
 
 const Layout = ({ children }) => {

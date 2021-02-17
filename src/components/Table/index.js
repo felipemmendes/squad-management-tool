@@ -40,7 +40,7 @@ const Table = ({ columns, data }) => {
               >
                 <div>
                   {column.render('Header')}
-                  <FaSort />
+                  <FaSort title="sort rows" />
                 </div>
               </S.TableHead>
             ))}
@@ -66,17 +66,17 @@ const Table = ({ columns, data }) => {
                         <ButtonIcon
                           onClick={() => handleRemoveTeam(row.original.id)}
                           tooltip="Remove"
-                          icon={FaTrash}
+                          icon={<FaTrash title="remove team" />}
                         />
                         <ButtonIcon
                           onClick={() => {}}
                           tooltip="Share"
-                          icon={FaShareAlt}
+                          icon={<FaShareAlt title="share team" />}
                         />
                         <ButtonIcon
                           onClick={() => navigateToTeam(row.original.id)}
                           tooltip="Edit"
-                          icon={FaPen}
+                          icon={<FaPen title="edit team" />}
                         />
                       </S.Options>
                     )}

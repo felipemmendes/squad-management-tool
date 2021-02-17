@@ -2,9 +2,9 @@ import { renderFormFieldChildren } from '../../../utils/renderFormFieldChildren'
 import * as S from './styles';
 
 const Form = ({
-  fieldValues,
-  setFieldValues,
-  resetFieldValue,
+  values,
+  handleChange,
+  resetField,
   errors,
   handleSubmit,
   children,
@@ -13,10 +13,10 @@ const Form = ({
     <S.Container onSubmit={handleSubmit}>
       {renderFormFieldChildren({
         children,
-        values: fieldValues,
+        values,
         errors,
-        handleChange: setFieldValues,
-        resetField: resetFieldValue,
+        handleChange,
+        resetField,
       })}
     </S.Container>
   );

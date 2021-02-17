@@ -1,4 +1,4 @@
-import { render, getByRole, getByText, getByTestId } from '../../setupTests';
+import { render, getByRole, getByText, getByTestId } from '../../test-utils';
 import Card from './';
 
 describe('card component', () => {

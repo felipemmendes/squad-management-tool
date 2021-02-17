@@ -1,15 +1,13 @@
-import { render, fireEvent, getByRole, getAllByRole } from '../setupTests';
+import { render, fireEvent, getByRole, getAllByRole } from '../test-utils';
 import useTeamTags from './useTeamTags';
 
 describe('useTeamTags hook', () => {
   const TestComponent = ({ initialValues }) => {
-    const { tagsArr, handleAddTag, handleDeleteTag } = useTeamTags(
-      initialValues
-    );
+    const { tags, handleAddTag, handleDeleteTag } = useTeamTags(initialValues);
     return (
       <div>
         <ul>
-          {tagsArr.map((tag) => (
+          {tags.map((tag) => (
             <li key={tag}>{tag}</li>
           ))}
         </ul>

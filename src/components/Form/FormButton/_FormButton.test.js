@@ -1,4 +1,4 @@
-import { render, getByRole } from '../../../setupTests';
+import { render, getByRole } from '../../../test-utils';
 import FormButton from './';
 
 describe('formButton component', () => {

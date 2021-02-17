@@ -1,4 +1,4 @@
-import { render, fireEvent, getByTestId } from '../../../setupTests';
+import { render, fireEvent, getByTestId } from '../../../test-utils';
 import ButtonIcon from './';
 
 describe('buttonIcon component', () => {
@@ -8,7 +8,7 @@ describe('buttonIcon component', () => {
     const { container } = render(
       <ButtonIcon
         tooltip="test-tooltip"
-        icon={() => <svg data-testid="svg" />}
+        icon={<svg data-testid="svg" />}
         onClick={mockedOnClick}
       />
     );
@@ -22,7 +22,7 @@ describe('buttonIcon component', () => {
     const { container } = render(
       <ButtonIcon
         tooltip="test-tooltip"
-        icon={() => <svg data-testid="svg" />}
+        icon={<svg data-testid="svg" />}
         onClick={mockedOnClick}
       />
     );

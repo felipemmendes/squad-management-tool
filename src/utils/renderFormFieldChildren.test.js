@@ -1,4 +1,4 @@
-import { render, getByRole, getByTestId } from '../setupTests';
+import { render, getByRole, getByTestId } from '../test-utils';
 import { renderFormFieldChildren } from './renderFormFieldChildren';
 
 describe('renderFormFieldChildren util', () => {

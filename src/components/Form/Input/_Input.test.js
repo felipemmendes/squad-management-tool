@@ -1,4 +1,4 @@
-import { render, fireEvent, getByRole } from '../../../setupTests';
+import { render, fireEvent, getByRole } from '../../../test-utils';
 import Input from './';
 
 describe('input component', () => {

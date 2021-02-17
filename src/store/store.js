@@ -1,5 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import {
   persistStore,
@@ -14,14 +13,17 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import teamsSlice from './teams/slice';
+import playersSlice from './players/slice';
 
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['players'],
 };
 
 const rootReducer = combineReducers({
   teams: teamsSlice,
+  players: playersSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -29,11 +31,17 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }).concat(logger),
+    process.env.NODE_ENV === 'development'
+      ? getDefaultMiddleware({
+          serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          },
+        }).concat(logger)
+      : getDefaultMiddleware({
+          serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          },
+        }),
   devTools: process.env.NODE_ENV !== 'production',
 });
 

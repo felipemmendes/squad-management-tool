@@ -1,4 +1,4 @@
-import { render, getByRole } from '../../../setupTests';
+import { render, getByRole } from '../../../test-utils';
 import Section from './';
 
 describe('section component', () => {

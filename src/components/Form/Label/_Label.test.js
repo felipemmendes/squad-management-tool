@@ -1,4 +1,4 @@
-import { render, getByLabelText, getByRole } from '../../../setupTests';
+import { render, getByLabelText, getByRole } from '../../../test-utils';
 import Label from './';
 
 describe('label component', () => {

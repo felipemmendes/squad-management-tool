@@ -4,12 +4,17 @@ export const Container = styled.li`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
   padding: 1rem;
   margin-bottom: 0.5rem;
   font-size: 0.75rem;
-  background: ${({ theme }) => theme.colors.gradientTertiary};
+  background: ${({ theme, disabled }) =>
+    disabled
+      ? theme.colors.transparentFillPrimary
+      : theme.colors.gradientTertiary};
   border-radius: 5px;
   position: relative;
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'move')};
 
   @media (min-width: 769px) {
     flex-direction: column;

@@ -1,4 +1,4 @@
-import { render, fireEvent, getByRole, getAllByRole } from '../../setupTests';
+import { render, fireEvent, getByRole, getAllByRole } from '../../test-utils';
 import { navigateToTeam } from '../../utils/navigateToTeam';
 import Ranking from './';
 

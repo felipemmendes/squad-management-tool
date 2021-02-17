@@ -14,27 +14,28 @@ import {
 } from '../../constants';
 import useTeamTags from '../../hooks/useTeamTags';
 import useFormValues from '../../hooks/useFormValues';
-import { editTeam } from '../../store';
+import { editTeam, setPlayers } from '../../store';
 import history from '../../routes/history';
 import { validateFormValues } from '../../utils/validateFormValues';
 
 const EditTeam = () => {
-  const [loading, setLoading] = useState(true);
-
+  const dispatch = useDispatch();
   const { id } = useParams();
   const team = useSelector((state) =>
     state.teams.myTeams.find((t) => t.id === id)
   );
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (!team) {
       history.push('/');
     } else {
+      dispatch(setPlayers(team.players));
       setLoading(false);
     }
-  }, [team]);
+  }, [team, dispatch]);
 
-  const dispatch = useDispatch();
   const { tags, handleAddTag, handleDeleteTag } = useTeamTags(
     team ? team.tags : []
   );
@@ -76,9 +77,9 @@ const EditTeam = () => {
       ) : (
         <Card title={team.name}>
           <Form
-            fieldValues={fieldValues}
-            setFieldValues={setFieldValues}
-            resetFieldValue={resetFieldValue}
+            values={fieldValues}
+            handleChange={setFieldValues}
+            resetField={resetFieldValue}
             errors={fieldErrors}
             handleSubmit={handleSubmit}
           >
@@ -135,6 +136,7 @@ const EditTeam = () => {
                   id="formation"
                   name="formation"
                   label="Formation"
+                  formationFor="players"
                   selectOptions={fieldFormationOptions}
                 />
                 <Field

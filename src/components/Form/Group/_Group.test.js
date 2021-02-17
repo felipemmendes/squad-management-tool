@@ -1,4 +1,4 @@
-import { render, getByRole } from '../../../setupTests';
+import { render, getByRole } from '../../../test-utils';
 import Group from './';
 
 describe('group component', () => {

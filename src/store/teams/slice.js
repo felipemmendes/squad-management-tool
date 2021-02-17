@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { v4 } from 'uuid';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = {
   myTeams: [],
+  picked: {},
 };
 
 const teamsSlice = createSlice({
@@ -11,7 +11,7 @@ const teamsSlice = createSlice({
   reducers: {
     addTeam(state, { payload }) {
       const newTeam = {
-        id: v4(),
+        id: nanoid(),
         ...payload,
       };
       const updatedTeams = [...state.myTeams, newTeam];

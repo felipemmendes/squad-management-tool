@@ -3,7 +3,7 @@ import {
   fireEvent,
   getByRole,
   getAllByRole,
-} from '../../../setupTests';
+} from '../../../test-utils';
 import Select from './';
 
 describe('select component', () => {

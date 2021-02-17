@@ -1,4 +1,4 @@
-import { render, fireEvent, getByRole } from '../../../../setupTests';
+import { render, fireEvent, getByRole } from '../../../../test-utils';
 import RadioInput from './';
 
 describe('radioInput component', () => {

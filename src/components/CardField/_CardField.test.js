@@ -1,4 +1,4 @@
-import { render, getByText } from '../../setupTests';
+import { render, getByText } from '../../test-utils';
 import CardField from './';
 
 describe('cardField component', () => {

@@ -57,9 +57,9 @@ const CreateTeam = () => {
     <Layout>
       <Card title="Create your team">
         <Form
-          fieldValues={fieldValues}
-          setFieldValues={setFieldValues}
-          resetFieldValue={resetFieldValue}
+          values={fieldValues}
+          handleChange={setFieldValues}
+          resetField={resetFieldValue}
           errors={fieldErrors}
           handleSubmit={handleSubmit}
         >
@@ -112,6 +112,7 @@ const CreateTeam = () => {
                 id="formation"
                 name="formation"
                 label="Formation"
+                formationFor="players"
                 selectOptions={fieldFormationOptions}
               />
               <Field

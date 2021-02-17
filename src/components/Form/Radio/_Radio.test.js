@@ -1,4 +1,4 @@
-import { render, getByRole, getAllByRole } from '../../../setupTests';
+import { render, getByRole, getAllByRole } from '../../../test-utils';
 import Radio from './';
 
 describe('radio component', () => {

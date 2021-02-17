@@ -1,14 +1,10 @@
-import { render, getByText, getByRole } from '../../setupTests';
+import { render, getByText, getByRole } from '../../test-utils';
 import Header from './';
 
 describe('header component', () => {
   it('should render header with logo, link to dashboard and user info', () => {
     const { container } = render(
-      <Header
-        user={{ name: 'John Doe', initials: 'JD' }}
-        logo="img.svg"
-        text="test-app-name"
-      />
+      <Header user={{ name: 'John Doe' }} logo="img.svg" text="test-app-name" />
     );
 
     expect(getByRole(container, 'link')).toHaveAttribute('href', '/');

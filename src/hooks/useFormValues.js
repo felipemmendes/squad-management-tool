@@ -23,6 +23,27 @@ const useFormValues = (initialValues) => {
           [name]: newArr,
         };
       });
+    } else if (changeType === 'dataDrop') {
+      setValues((oldState) => {
+        const { position } = event.target;
+        return {
+          ...oldState,
+          [name]: {
+            ...oldState.players,
+            [position]: value,
+          },
+        };
+      });
+    } else if (changeType === 'changeField') {
+      setValues((oldState) => {
+        const { clearField } = event.target;
+        console.log(event.target.value);
+        return {
+          ...oldState,
+          [name]: value,
+          [clearField]: {},
+        };
+      });
     } else {
       setValues((oldState) => ({
         ...oldState,

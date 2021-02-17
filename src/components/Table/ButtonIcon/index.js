@@ -1,9 +1,9 @@
 import * as S from './styles';
 
-const ButtonIcon = ({ onClick, tooltip, icon: Icon }) => {
+const ButtonIcon = ({ onClick, tooltip, icon }) => {
   return (
     <S.Container tooltip={tooltip} onClick={onClick}>
-      <Icon />
+      {icon}
     </S.Container>
   );
 };

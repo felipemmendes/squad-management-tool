@@ -1,6 +1,9 @@
+import { getNameInitials } from '../../utils/getNameInitials';
 import * as S from './styles';
 
 const Header = ({ logo, text, user }) => {
+  const initials = getNameInitials(user.name);
+
   return (
     <S.Container>
       <S.AppInfo to="/">
@@ -9,7 +12,7 @@ const Header = ({ logo, text, user }) => {
       </S.AppInfo>
       <S.User>
         {user.name}
-        <S.Avatar>{user.initials}</S.Avatar>
+        <S.Avatar>{initials}</S.Avatar>
       </S.User>
     </S.Container>
   );

@@ -4,7 +4,7 @@ import {
   getByTestId,
   findByTestId,
   getByRole,
-} from '../setupTests';
+} from '../test-utils';
 import useFormValues from './useFormValues';
 
 describe('useFormValues hook', () => {

@@ -48,7 +48,7 @@ const Tags = ({
           <S.Item key={tag}>
             {tag}{' '}
             <button onClick={() => deleteTag(tag)}>
-              <MdClose />
+              <MdClose title="delete tag" />
             </button>
           </S.Item>
         ))}

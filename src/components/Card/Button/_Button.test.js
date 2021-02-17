@@ -1,4 +1,4 @@
-import { render, getByTestId, getByRole } from '../../../setupTests';
+import { render, getByTestId, getByRole } from '../../../test-utils';
 import Button from './';
 
 describe('button component', () => {
