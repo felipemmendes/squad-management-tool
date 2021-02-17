@@ -37,25 +37,6 @@ const teamsSlice = createSlice({
         results: [],
       };
     },
-    setPlayers(state, { payload }) {
-      const players = Object.values(payload).map((player) => player.id);
-      return {
-        ...state,
-        selected: players,
-      };
-    },
-    selectPlayer(state, { payload }) {
-      return {
-        ...state,
-        selected: [...state.selected, payload],
-      };
-    },
-    clearSelected(state) {
-      return {
-        ...state,
-        selected: [],
-      };
-    },
   },
   extraReducers: {
     [searchPlayer.pending]: (state) => {
@@ -81,10 +62,5 @@ const teamsSlice = createSlice({
   },
 });
 
-export const {
-  clearQuery,
-  setPlayers,
-  selectPlayer,
-  clearSelected,
-} = teamsSlice.actions;
+export const { clearQuery } = teamsSlice.actions;
 export default teamsSlice.reducer;

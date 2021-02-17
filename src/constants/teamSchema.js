@@ -6,12 +6,21 @@ const teamSchema = yup.object().shape({
   website: yup.string().url().required(),
   type: yup.string().required(),
   tags: yup.array(yup.string()),
-  players: yup.object().shape({
+  playersFormation: yup.object().shape({
     name: yup.string(),
     age: yup.number(),
     id: yup.number(),
     nationality: yup.string(),
   }),
+  formation: yup.string(),
+  players: yup.array(
+    yup.object({
+      name: yup.string(),
+      age: yup.number(),
+      id: yup.number(),
+      nationality: yup.string(),
+    })
+  ),
 });
 
 export default teamSchema;

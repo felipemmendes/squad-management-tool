@@ -1,8 +1,5 @@
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { FaChevronDown } from 'react-icons/fa';
-
-import { clearSelected } from '../../../store';
 
 import * as S from './styles';
 
@@ -15,10 +12,8 @@ const Select = ({
   formationFor,
   selectOptions,
 }) => {
-  const dispatch = useDispatch();
   const handleChange = useCallback(
     (event) => {
-      dispatch(clearSelected);
       onChange({
         target: {
           name,
@@ -28,7 +23,7 @@ const Select = ({
         },
       });
     },
-    [dispatch, formationFor, onChange, name]
+    [formationFor, onChange, name]
   );
 
   return (

@@ -10,7 +10,7 @@ import SearchInput from './SearchInput';
 
 import * as S from './styles';
 
-const Search = ({ label, name, inputId }) => {
+const Search = ({ label, name, inputId, selected }) => {
   const dispatch = useDispatch();
   const { results, loading } = useSelector((state) => state.players);
   const { fieldValues, setFieldValues } = useFormValues({ [name]: '' });
@@ -42,7 +42,11 @@ const Search = ({ label, name, inputId }) => {
         ) : (
           results &&
           results.map((result) => (
-            <SearchCard key={result.player_id} info={result} />
+            <SearchCard
+              key={result.player_id}
+              info={result}
+              selectedPlayers={selected}
+            />
           ))
         )}
       </ul>

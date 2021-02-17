@@ -6,7 +6,7 @@ const formInitialValues = {
   tagsInput: '',
   tags: [],
   formation: '3 - 2 - 2 - 3',
-  players: '',
+  playersFormation: {},
 };
 
 export default formInitialValues;

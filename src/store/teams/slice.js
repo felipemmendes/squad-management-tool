@@ -2,7 +2,6 @@ import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = {
   myTeams: [],
-  picked: {},
 };
 
 const teamsSlice = createSlice({
@@ -14,6 +13,7 @@ const teamsSlice = createSlice({
         id: nanoid(),
         ...payload,
       };
+
       const updatedTeams = [...state.myTeams, newTeam];
       return {
         ...state,

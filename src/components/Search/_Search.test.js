@@ -16,6 +16,11 @@ describe('search component', () => {
         label="test-search-label"
         name="test-search-name"
         inputId="test-search-input"
+        selected={{
+          '0-0': {
+            id: 1,
+          },
+        }}
       />
     );
 
@@ -42,12 +47,16 @@ describe('search component', () => {
         label="test-search-label"
         name="test-search-name"
         inputId="test-search-input"
+        selected={{
+          '0-0': {
+            id: 1,
+          },
+        }}
       />,
       {
         initialState: {
           players: {
             results: [],
-            selected: [],
           },
         },
       }

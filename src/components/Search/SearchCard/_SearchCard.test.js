@@ -11,6 +11,11 @@ describe('searchCard component', () => {
           nationality: 'Brazil',
           player_id: 1,
         }}
+        selectedPlayers={{
+          '0-0': {
+            id: 2,
+          },
+        }}
       />
     );
 
@@ -32,14 +37,12 @@ describe('searchCard component', () => {
           nationality: 'Brazil',
           player_id: 1,
         }}
-      />,
-      {
-        initialState: {
-          players: {
-            selected: [1],
+        selectedPlayers={{
+          '0-0': {
+            id: 1,
           },
-        },
-      }
+        }}
+      />
     );
 
     expect(getByRole(container, 'listitem')).toHaveAttribute(
@@ -58,6 +61,11 @@ describe('searchCard component', () => {
           age: 30,
           nationality: 'Brazil',
           player_id: 1,
+        }}
+        selectedPlayers={{
+          '0-0': {
+            id: 2,
+          },
         }}
       />
     );

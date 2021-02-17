@@ -1,12 +1,10 @@
-import { useSelector } from 'react-redux';
-
 import { getNameInitials } from '../../../utils/getNameInitials';
 import * as S from './styles';
 
-const SearchCard = ({ info }) => {
-  const selected = useSelector((state) =>
-    state.players.selected.find((p) => p === info.player_id)
-  );
+const SearchCard = ({ info, selectedPlayers }) => {
+  const selected = Object.values(selectedPlayers)
+    .map((player) => player.id)
+    .find((id) => id === info.player_id);
 
   const handleDrag = (event) => {
     event.dataTransfer.dropEffect = 'copy';

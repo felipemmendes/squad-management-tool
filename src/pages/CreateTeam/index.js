@@ -112,19 +112,24 @@ const CreateTeam = () => {
                 id="formation"
                 name="formation"
                 label="Formation"
-                formationFor="players"
+                formationFor="playersFormation"
                 selectOptions={fieldFormationOptions}
               />
               <Field
                 component="formation"
-                id="players"
-                name="players"
+                id="playersFormation"
+                name="playersFormation"
                 playersFor="formation"
               />
               <FormButton type="submit">Save</FormButton>
             </Field>
             <Field component="group">
-              <Search label="Search Players" inputId="search" name="search" />
+              <Search
+                label="Search Players"
+                inputId="search"
+                name="search"
+                selected={fieldValues['playersFormation']}
+              />
             </Field>
           </Field>
         </Form>

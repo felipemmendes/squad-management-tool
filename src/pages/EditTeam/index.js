@@ -14,7 +14,7 @@ import {
 } from '../../constants';
 import useTeamTags from '../../hooks/useTeamTags';
 import useFormValues from '../../hooks/useFormValues';
-import { editTeam, setPlayers } from '../../store';
+import { editTeam } from '../../store';
 import history from '../../routes/history';
 import { validateFormValues } from '../../utils/validateFormValues';
 
@@ -31,7 +31,7 @@ const EditTeam = () => {
     if (!team) {
       history.push('/');
     } else {
-      dispatch(setPlayers(team.players));
+      // dispatch(setPlayers(team.playersFormation));
       setLoading(false);
     }
   }, [team, dispatch]);
@@ -136,19 +136,24 @@ const EditTeam = () => {
                   id="formation"
                   name="formation"
                   label="Formation"
-                  formationFor="players"
+                  formationFor="playersFormation"
                   selectOptions={fieldFormationOptions}
                 />
                 <Field
                   component="formation"
-                  id="players"
-                  name="players"
+                  id="playersFormation"
+                  name="playersFormation"
                   playersFor="formation"
                 />
                 <FormButton type="submit">Save</FormButton>
               </Field>
               <Field component="group">
-                <Search label="Search Players" inputId="search" name="search" />
+                <Search
+                  label="Search Players"
+                  inputId="search"
+                  name="search"
+                  selected={fieldValues['playersFormation']}
+                />
               </Field>
             </Field>
           </Form>

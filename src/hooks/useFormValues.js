@@ -29,7 +29,7 @@ const useFormValues = (initialValues) => {
         return {
           ...oldState,
           [name]: {
-            ...oldState.players,
+            ...oldState[name],
             [position]: value,
           },
         };
@@ -37,7 +37,6 @@ const useFormValues = (initialValues) => {
     } else if (changeType === 'changeField') {
       setValues((oldState) => {
         const { clearField } = event.target;
-        console.log(event.target.value);
         return {
           ...oldState,
           [name]: value,

@@ -1,14 +1,9 @@
 import { useMemo } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { selectPlayer } from '../../../store';
 
 import PlayerCard from './PlayerCard';
 import * as S from './styles';
 
 const CardFormation = ({ name, value, onChange, formation }) => {
-  const dispatch = useDispatch();
-
   const displayFormation = useMemo(() => {
     const displayFormation = formation.split(' - ');
     displayFormation.reverse();
@@ -19,8 +14,6 @@ const CardFormation = ({ name, value, onChange, formation }) => {
   const handleDrop = (event, cardId) => {
     event.preventDefault();
     const data = JSON.parse(event.dataTransfer.getData('text/plain'));
-
-    dispatch(selectPlayer(data.id));
 
     onChange({
       target: {
