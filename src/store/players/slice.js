@@ -4,7 +4,6 @@ import api from '../../services/api';
 const initialState = {
   results: [],
   loading: false,
-  selected: [],
 };
 
 export const searchPlayer = createAsyncThunk(
