@@ -40,9 +40,11 @@ const teamsSlice = createSlice({
     },
     removeTeam(state, { payload }) {
       const { players } = state.myTeams.find((team) => team.id === payload);
+      
+      const currPickedPlayers = {...state.pickedPlayers};
 
       const newPickedPlayers = concatRemovePlayers(
-        state.pickedPlayers,
+        currPickedPlayers,
         players
       );
 
